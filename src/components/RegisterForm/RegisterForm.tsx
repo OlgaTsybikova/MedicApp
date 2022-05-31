@@ -86,8 +86,9 @@ const RegisterForm = (): JSX.Element => {
             <button
               type="button"
               className="inline-block px-20 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              onClick={register}
             >
-              Primary
+              Register
             </button>
           </div>
           <p>Do you have an account?</p>
