@@ -5,14 +5,20 @@ import { registerThunk } from "../../redux/thunks/userThunks";
 import RegisterFormStyled from "./RegisterFormStyled";
 
 const RegisterForm = (): JSX.Element => {
+  interface FormData {
+    name: string;
+    username: string;
+    password: string;
+  }
+
   const initialForm = {
     name: "",
     username: "",
     password: "",
   };
 
-  const [formData, setFormData] = useState(initialForm);
-  const dispatch: AppDispatch = useAppDispatch();
+  const [formData, setFormData] = useState<FormData>(initialForm);
+  const dispatch = useAppDispatch();
 
   const updateData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
