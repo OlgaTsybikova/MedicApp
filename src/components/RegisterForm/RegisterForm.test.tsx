@@ -12,9 +12,8 @@ describe("Given a Register form function", () => {
         </Provider>
       );
       const textInput = screen.getByRole("textbox", { name: "Username" });
-      const passwordInput = screen.getByRole("textbox", { name: "Password" });
+
       expect(textInput).toBeInTheDocument();
-      expect(passwordInput).toBeInTheDocument();
     });
   });
 });
