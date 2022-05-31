@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../redux/hooks/hooks";
-import { AppDispatch } from "../../redux/store/store";
 import { registerThunk } from "../../redux/thunks/userThunks";
 import RegisterFormStyled from "./RegisterFormStyled";
 
@@ -37,6 +36,7 @@ const RegisterForm = (): JSX.Element => {
           <label htmlFor="name">
             Name
             <input
+              className="register-form"
               type="text"
               id="name"
               value={formData.name}
@@ -46,6 +46,7 @@ const RegisterForm = (): JSX.Element => {
           <label htmlFor="username">
             Username
             <input
+              className="register-form"
               type="text"
               id="username"
               value={formData.username}
@@ -55,6 +56,7 @@ const RegisterForm = (): JSX.Element => {
           <label htmlFor="password">
             Password
             <input
+              className="register-form"
               type="text"
               id="password"
               value={formData.password}
