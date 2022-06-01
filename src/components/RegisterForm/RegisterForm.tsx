@@ -50,6 +50,7 @@ const RegisterForm = (): JSX.Element => {
               className="register-form relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-verde focus:z-10"
               type="text"
               id="name"
+              placeholder="Name"
               value={formData.name}
               onChange={updateData}
             />
@@ -64,6 +65,7 @@ const RegisterForm = (): JSX.Element => {
               className="register-form relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-verde focus:z-10"
               type="text"
               id="username"
+              placeholder="Username"
               value={formData.username}
               onChange={updateData}
             />
@@ -78,6 +80,7 @@ const RegisterForm = (): JSX.Element => {
               className="register-form relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-verde focus:z-10"
               type="password"
               id="password"
+              placeholder="Password"
               value={formData.password}
               onChange={updateData}
             />
