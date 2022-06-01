@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const RegisterFormStyled = styled.div`
+const LoginFormStyled = styled.div`
+  padding: 3rem 2.5rem;
   h1 {
     font-family: "Montserrat", sans-serif;
   }
@@ -8,7 +9,7 @@ const RegisterFormStyled = styled.div`
     background: #ffffff;
     box-shadow: 0px 9px 28px 6px rgba(138, 149, 158, 0.15);
     border-radius: 21px;
-    display: flex;
+    display: flexbox;
     flex-direction: column;
   }
   button {
@@ -22,4 +23,4 @@ const RegisterFormStyled = styled.div`
     border-radius: 15px;
   }
 `;
-export default RegisterFormStyled;
+export default LoginFormStyled;
