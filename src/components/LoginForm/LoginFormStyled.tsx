@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const RegisterFormStyled = styled.div`
+const LoginFormStyled = styled.div`
   padding: 3rem 2.5rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 8px 10px -6px rgba(0, 0, 0, 0.1);
@@ -25,4 +25,4 @@ const RegisterFormStyled = styled.div`
     border-radius: 15px;
   }
 `;
-export default RegisterFormStyled;
+export default LoginFormStyled;
