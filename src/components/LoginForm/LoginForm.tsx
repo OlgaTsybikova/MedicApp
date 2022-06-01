@@ -3,13 +3,7 @@ import LoginFormStyled from "./LoginFormStyled";
 const LoginForm = () => {
   return (
     <LoginFormStyled>
-      <form
-        className="mt-8 space-y-6"
-        action="#"
-        method="POST"
-        autoComplete="off"
-        noValidate
-      >
+      <form action="#" method="POST" autoComplete="off" noValidate>
         <h1 className="text-3xl text-cyan-800 font-bold">Welcome Back!</h1>
         <div>
           <label

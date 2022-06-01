@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-backgroundimage: {
-  'hero-pattern':"url('/public/background-picture.jpg')",'footer-texture': "url('/img/footer-texture.png')";
+html,
+body {
+  height: 100%;
 }
