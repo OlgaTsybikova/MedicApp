@@ -1,6 +1,40 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks/hooks";
+import { loginThunk } from "../../redux/thunks/userThunks";
+import { LoginData } from "../../redux/types/userInterface";
 import LoginFormStyled from "./LoginFormStyled";
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
+  const initialFormState: LoginData = {
+    username: "",
+    password: "",
+  };
+
+  const [formState, setFormState] = useState(initialFormState);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleChangeForm = (event: {
+    target: { id: string; value: string };
+  }) => {
+    setFormState({ ...formState, [event.target.id]: event.target.value });
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    dispatch(loginThunk(formState));
+    setFormState(initialFormState);
+  };
+
   return (
     <LoginFormStyled>
       <form action="#" method="POST" autoComplete="off" noValidate>
@@ -17,6 +51,8 @@ const LoginForm = () => {
               type="text"
               id="username"
               placeholder="Username"
+              onChange={handleChangeForm}
+              value={formState.username}
             />
           </label>
           <label
@@ -30,10 +66,13 @@ const LoginForm = () => {
               type="password"
               id="password"
               placeholder="Password"
+              onChange={handleChangeForm}
+              value={formState.password}
             />
           </label>
           <div className="flex space-x-2 justify-center">
             <button
+              onClick={handleSubmit}
               type="button"
               className="inline-block px-20 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             >

@@ -4,7 +4,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 function App() {
   return (
-    <div className="md:container md:mx-auto bg-gradient-to-r from-cyan-100 to-blue-200">
+    <div className="bg-origin-border p-4 border-4 border-dashed">
       <Layout>
         <Routes>
           <Route path="/" element={<Navigate to="/register" />} />

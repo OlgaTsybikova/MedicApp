@@ -1,10 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { UserPayload } from "../types/userInterface";
 
 const userSlice = createSlice({
   name: "user",
   initialState: {},
   reducers: {
-    logIn: (user, action) => ({ ...action.payload }),
+    logIn: (user, action: PayloadAction<UserPayload>) => ({
+      ...action.payload,
+    }),
   },
 });
 
