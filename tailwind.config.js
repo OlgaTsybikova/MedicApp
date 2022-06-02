@@ -6,10 +6,10 @@ module.exports = {
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],
     },
+    backgroundImage: {
+      "main-img": "url('/public/background-picture.jpg')",
+    },
     extend: {
-      backgroundImage: {
-        "hero-pattern": "url('../public/background-picture.jpg')",
-      },
       spacing: {
         "8xl": "96rem",
         "9xl": "128rem",

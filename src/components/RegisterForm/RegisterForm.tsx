@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { registerThunk } from "../../redux/thunks/userThunks";
 import RegisterFormStyled from "./RegisterFormStyled";
@@ -30,7 +31,7 @@ const RegisterForm = (): JSX.Element => {
   };
 
   return (
-    <RegisterFormStyled>
+    <RegisterFormStyled className="sm:px-6 lg:px-8">
       <form
         className="mt-8 space-y-6"
         action="#"
@@ -94,9 +95,12 @@ const RegisterForm = (): JSX.Element => {
               Register
             </button>
           </div>
-          <p>Do you have an account?</p>
         </div>
       </form>
+      <p>Already have an account?</p>
+      <Link to={"/login"} className="text-l text-cyan-800 font-bold">
+        Signin
+      </Link>
     </RegisterFormStyled>
   );
 };

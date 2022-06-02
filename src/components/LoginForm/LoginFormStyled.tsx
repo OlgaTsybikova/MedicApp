@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const LoginFormStyled = styled.div`
-  padding: 3rem 2.5rem;
   h1 {
     font-family: "Montserrat", sans-serif;
   }
@@ -9,7 +8,6 @@ const LoginFormStyled = styled.div`
     background: #ffffff;
     box-shadow: 0px 9px 28px 6px rgba(138, 149, 158, 0.15);
     border-radius: 21px;
-    display: flexbox;
     flex-direction: column;
   }
   button {
