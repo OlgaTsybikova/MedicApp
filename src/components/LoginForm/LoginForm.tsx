@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { loginThunk } from "../../redux/thunks/userThunks";
 import { LoginData } from "../../redux/types/userInterface";
@@ -36,8 +36,14 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <LoginFormStyled>
-      <form action="#" method="POST" autoComplete="off" noValidate>
+    <LoginFormStyled className="sm:px-6 lg:px-8">
+      <form
+        className="mt-8 space-y-6"
+        action="#"
+        method="POST"
+        autoComplete="off"
+        noValidate
+      >
         <h1 className="text-3xl text-cyan-800 font-bold">Welcome Back!</h1>
         <div>
           <label
@@ -79,7 +85,10 @@ const LoginForm = (): JSX.Element => {
               Log In
             </button>
           </div>
-          <p>Do you have an account?</p>
+          <p>Don't have an account?</p>
+          <Link to={"/register"} className="text-1 text-cyan-800 font-bold">
+            Create Account
+          </Link>
         </div>
       </form>
     </LoginFormStyled>
