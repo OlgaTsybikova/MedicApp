@@ -8,9 +8,11 @@ const userSlice = createSlice({
     logIn: (user, action: PayloadAction<UserPayload>) => ({
       ...action.payload,
     }),
+    logOut: (user, action) => ({}),
   },
 });
 
-export const { logIn: loginActionCreator } = userSlice.actions;
+export const { logIn: loginActionCreator, logOut: logoutActionCreator } =
+  userSlice.actions;
 
 export default userSlice.reducer;
