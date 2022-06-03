@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { loginThunk } from "../../redux/thunks/userThunks";
 import { LoginData } from "../../redux/types/userInterface";
-
+import login from "../../utils/login-image.png";
 import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
@@ -38,6 +38,7 @@ const LoginForm = (): JSX.Element => {
 
   return (
     <LoginFormStyled className="sm:px-6 lg:px-8">
+      <img src={login} alt="login" className="mt-8 space-y-6" />
       <form
         className="mt-8 space-y-6"
         action="#"

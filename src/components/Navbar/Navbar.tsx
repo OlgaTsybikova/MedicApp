@@ -1,11 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBookmark,
-  faCirclePlus,
   faHouse,
   faStethoscope,
   faSuitcaseMedical,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
@@ -13,7 +11,7 @@ import NavbarStyled from "./NavbarStyled";
 const Navbar = () => {
   return (
     <NavbarStyled>
-      <nav className="navbar">
+      <nav className="navbar w-screen">
         <ul className="list list-unstyled">
           <li>
             <NavLink to="/home">
