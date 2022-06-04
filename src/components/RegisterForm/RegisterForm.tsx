@@ -33,7 +33,7 @@ const RegisterForm = (): JSX.Element => {
   return (
     <RegisterFormStyled className="sm:px-6 lg:px-8">
       <form
-        className="mt-8 space-y-6 "
+        className="mt-8 space-y-6"
         action="#"
         method="POST"
         autoComplete="off"
@@ -103,13 +103,13 @@ const RegisterForm = (): JSX.Element => {
             Register
           </button>
         </div>
+        <p>
+          Already have an account?{" "}
+          <Link to={"/login"} className="text-1 text-cyan-800 font-bold">
+            Login
+          </Link>
+        </p>
       </form>
-      <p>
-        Already have an account?{" "}
-        <Link to={"/login"} className="text-l text-cyan-800 font-bold">
-          Signin
-        </Link>
-      </p>
     </RegisterFormStyled>
   );
 };
