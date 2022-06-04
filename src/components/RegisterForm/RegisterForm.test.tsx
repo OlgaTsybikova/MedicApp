@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import App from "../../App";
 import { store } from "../../redux/store/store";
 import { registerThunk } from "../../redux/thunks/userThunks";
+import RegisterForm from "./RegisterForm";
 
 const mockDispatch = jest.fn();
 jest.mock("react-redux", () => ({
@@ -22,7 +22,7 @@ describe("Given a Register form function", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <App />
+            <RegisterForm />
           </Provider>
         </BrowserRouter>
       );
@@ -40,7 +40,7 @@ describe("Given a Register form function", () => {
         render(
           <BrowserRouter>
             <Provider store={store}>
-              <App />
+              <RegisterForm />
             </Provider>
           </BrowserRouter>
         );
@@ -50,9 +50,9 @@ describe("Given a Register form function", () => {
           password: "marisco",
         };
 
-        const nameInput = screen.getByPlaceholderText("Name");
-        const usernameInput = screen.getByPlaceholderText("Username");
-        const passwordInput = screen.getByPlaceholderText("Password");
+        const nameInput = screen.getByLabelText("Name");
+        const usernameInput = screen.getByLabelText("Username");
+        const passwordInput = screen.getByLabelText("Password");
         const button = screen.getByRole("button");
 
         userEvent.type(nameInput, "Marisco");

@@ -4,7 +4,7 @@ const LoginFormStyled = styled.div`
   h1 {
     font-family: "Montserrat", sans-serif;
   }
-  .register-form {
+  .login-form {
     background: #ffffff;
     box-shadow: 0px 9px 28px 6px rgba(138, 149, 158, 0.15);
     border-radius: 21px;
