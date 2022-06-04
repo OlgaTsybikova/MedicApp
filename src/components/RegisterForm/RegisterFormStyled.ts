@@ -8,7 +8,6 @@ const RegisterFormStyled = styled.div`
     background: #ffffff;
     box-shadow: 0px 9px 28px 6px rgba(138, 149, 158, 0.15);
     border-radius: 21px;
-    display: flex;
     flex-direction: column;
   }
   button {

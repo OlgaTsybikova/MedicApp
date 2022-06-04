@@ -1,6 +1,10 @@
 module.exports = {
   content: ["./src/**/*.{html,tsx}"],
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("tailwindcss"),
+    require("autoprefixer"),
+    require("@tailwindcss/forms"),
+  ],
   theme: {
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
@@ -16,6 +20,9 @@ module.exports = {
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      zIndex: {
+        "-1": "-1",
       },
     },
   },
