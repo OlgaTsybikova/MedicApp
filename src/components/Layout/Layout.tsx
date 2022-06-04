@@ -5,7 +5,7 @@ type Props = {
 };
 function Layout({ children }: Props) {
   return (
-    <LayoutStyled className="bg-main-img bg-cover w-screen">
+    <LayoutStyled className="bg-main-img bg-cover h-screen w-screen">
       <main className="main">{children}</main>
     </LayoutStyled>
   );

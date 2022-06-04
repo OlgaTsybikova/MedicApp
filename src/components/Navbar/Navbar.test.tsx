@@ -4,12 +4,12 @@ import Navbar from "./Navbar";
 
 describe("Given a Navbar component function", () => {
   describe("When invoked", () => {
-    test("Then it should render 4 li elements", () => {
-      const expectedNumberOfElements = 4;
+    test("Then it should render one div element", () => {
+      const expectedNumberOfElements = 1;
 
       render(<Navbar />, { wrapper: MemoryRouter });
 
-      const navbar = screen.getAllByRole("listitem");
+      const navbar = screen.getAllByRole("img", { name: "logo" });
 
       expect(navbar.length).toEqual(expectedNumberOfElements);
     });
