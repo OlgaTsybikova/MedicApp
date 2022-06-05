@@ -10,6 +10,9 @@ module.exports = {
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],
     },
+    backgroundImage: {
+      "main-img": "url('/public/background-picture.jpg')",
+    },
     extend: {},
   },
 };

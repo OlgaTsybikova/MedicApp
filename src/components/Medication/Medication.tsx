@@ -8,11 +8,12 @@ export type MedicationProps = {
   dosis?: string;
   id: string;
 };
+
 const Medication = ({
   title,
   image,
   prospect,
-  description,
+  uses,
 }: MedicationProps): JSX.Element => {
   return (
     <>
@@ -27,17 +28,22 @@ const Medication = ({
                   className="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100"
                 ></img>
                 <div className="p-6">
-                  <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                  <h2 className="tracking-widest text-lg title-font font-bold text-gray-700 mb-1">
                     {title}
                   </h2>
 
-                  <h3 className="title-font text-lg font-medium text-gray-600 mb-3">
-                    Prospect{prospect}
+                  <h3 className="title-font text-lg font-medium text-gray-700 mb-3">
+                    <a
+                      href={prospect}
+                      className="text-1 text-cyan-800 font-medium"
+                    >
+                      Read Prospect here
+                    </a>
                   </h3>
-                  <p className="leading-relaxed mb-3">{description}</p>
+                  <p className="leading-relaxed mb-3">{uses}</p>
 
                   <div className="flex items-center flex-wrap ">
-                    <button className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2">
+                    <button className="bg-emerald-300 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2">
                       Add to your Aid Kit
                     </button>
                   </div>
