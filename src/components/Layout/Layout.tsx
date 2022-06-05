@@ -5,7 +5,7 @@ type Props = {
 };
 function Layout({ children }: Props) {
   return (
-    <LayoutStyled className=" bg-gradient-to-r from-emerald-100 to-pink-100 md:from-emerald-100">
+    <LayoutStyled className="bg-main-img bg-scroll bg-no-repeat bg-cover h-full w-screen">
       <main className="main">{children}</main>
     </LayoutStyled>
   );
