@@ -8,7 +8,7 @@ const LoginPage = () => {
         alt="login"
         className="mt-8 space-y-6 object-contain md:object-scale-down"
       />
-      <LoginForm />;
+      <LoginForm />
     </>
   );
 };
