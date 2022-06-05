@@ -6,7 +6,7 @@ export type MedicationProps = {
   description?: string[];
   uses?: string[];
   dosis?: string;
-  id?: string;
+  id: string;
 };
 const Medication = ({
   title,

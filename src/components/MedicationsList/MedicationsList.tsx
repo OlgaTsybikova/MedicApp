@@ -18,7 +18,6 @@ const MedicationsList = (): JSX.Element => {
 
   return (
     <div>
-      <h1>MedicationsList</h1>
       <ul>
         {medicationsList.map((medication: IMedication) => {
           return (
