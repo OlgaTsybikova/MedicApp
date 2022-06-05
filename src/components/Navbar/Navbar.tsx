@@ -8,7 +8,7 @@ type Props = {
 const ResponsiveNavbar = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="bg-gradient-to-r from-blue-200 to-blue-100">
+    <div>
       <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       {menuOpen && (
         <MobileMenu

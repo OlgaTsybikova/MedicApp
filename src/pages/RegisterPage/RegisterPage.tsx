@@ -8,7 +8,7 @@ const RegisterPage = () => {
         alt="register"
         className="mt-8 space-y-6 object-contain md:object-scale-down"
       />
-      <RegisterForm />;
+      <RegisterForm />
     </>
   );
 };
