@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks/hooks";
+import { RootState } from "../../redux/store/store";
 import { loginThunk } from "../../redux/thunks/userThunks";
 import { LoginData } from "../../redux/types/userInterface";
 
@@ -15,6 +17,7 @@ const LoginForm = (): JSX.Element => {
   const [formState, setFormState] = useState(initialFormState);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const userInfo = useSelector((state: RootState) => state.user);
 
   const handleChangeForm = (event: {
     target: { id: string; value: string };
@@ -27,7 +30,7 @@ const LoginForm = (): JSX.Element => {
     if (token) {
       navigate("/medications");
     }
-  }, [navigate]);
+  }, [navigate, userInfo]);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
