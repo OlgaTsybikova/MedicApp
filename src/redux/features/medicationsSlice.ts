@@ -10,9 +10,13 @@ const medicationsSlice = createSlice({
     loadMedications: (medications, action: PayloadAction<MedicationState>) => [
       ...action.payload,
     ],
+    deleteMedications: (medications, action: PayloadAction<string>) =>
+      medications.filter((medication) => medication.id !== action.payload),
   },
 });
 
-export const { loadMedications: loadMedicationsActionCreator } =
-  medicationsSlice.actions;
+export const {
+  loadMedications: loadMedicationsActionCreator,
+  deleteMedications: deleteMedicationsActionCreator,
+} = medicationsSlice.actions;
 export default medicationsSlice.reducer;
