@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import LoggedControl from "./components/GoalKeeper/LoggedControl";
-import LoggedOutControl from "./components/GoalKeeper/LoggedOutControl";
+import LoggedControl from "./components/Logged/LoggedControl";
+import LoggedOutControl from "./components/Logged/LoggedOutControl";
 import Layout from "./components/Layout/Layout";
 import ResponsiveNavbar from "./components/Navbar/Navbar";
 import LoginPage from "./pages/LoginPage/LoginPage";
