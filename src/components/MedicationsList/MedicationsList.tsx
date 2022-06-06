@@ -15,7 +15,6 @@ const MedicationsList = (): JSX.Element => {
   useEffect(() => {
     dispatch(loadMedicationsThunk());
   }, [dispatch]);
-
   return (
     <div>
       <ul>
@@ -27,7 +26,6 @@ const MedicationsList = (): JSX.Element => {
             />
           );
         })}
-        ;
       </ul>
     </div>
   );

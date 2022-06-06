@@ -1,6 +1,9 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
-import { loadMedicationsActionCreator } from "../features/medicationsSlice";
+import {
+  deleteMedicationsActionCreator,
+  loadMedicationsActionCreator,
+} from "../features/medicationsSlice";
 
 export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
   const url: string = `${process.env.REACT_APP_API_URL}medications/list`;
@@ -17,3 +20,13 @@ export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
     return error.message;
   }
 };
+export const deleteMedicationsThunk =
+  (id: string) => async (dispatch: Dispatch) => {
+    const { status } = await axios.delete(
+      `${process.env.REACT_APP_API_URL}medications/${id}`,
+      { method: "DELETE" }
+    );
+    if (status === 200) {
+      dispatch(deleteMedicationsActionCreator(id));
+    }
+  };
