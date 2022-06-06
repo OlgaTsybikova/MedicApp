@@ -22,11 +22,17 @@ export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
 };
 export const deleteMedicationsThunk =
   (id: string) => async (dispatch: Dispatch) => {
-    const { status } = await axios.delete(
-      `${process.env.REACT_APP_API_URL}medications/${id}`,
-      { method: "DELETE" }
-    );
-    if (status === 200) {
-      dispatch(deleteMedicationsActionCreator(id));
-    }
+    try {
+      const token = localStorage.getItem("token");
+      const { status } = await axios.delete(
+        `${process.env.REACT_APP_API_URL}medications/${id}`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (status === 200) {
+        dispatch(deleteMedicationsActionCreator(id));
+      }
+    } catch (error) {}
   };

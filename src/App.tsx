@@ -1,4 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import LoggedControl from "./components/Logged/LoggedControl";
+import LoggedOutControl from "./components/Logged/LoggedOutControl";
 import Layout from "./components/Layout/Layout";
 import ResponsiveNavbar from "./components/Navbar/Navbar";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -10,10 +12,38 @@ function App() {
     <Layout>
       <ResponsiveNavbar />
       <Routes>
-        <Route path="/" element={<Navigate to="/register" />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/medications" element={<MedicationPage />} />
+        <Route
+          path="/"
+          element={
+            <LoggedControl>
+              <Navigate to="/medications" />
+            </LoggedControl>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <LoggedOutControl>
+              <RegisterPage />
+            </LoggedOutControl>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <LoggedOutControl>
+              <LoginPage />
+            </LoggedOutControl>
+          }
+        />
+        <Route
+          path="/medications"
+          element={
+            <LoggedControl>
+              <MedicationPage />
+            </LoggedControl>
+          }
+        />
       </Routes>
     </Layout>
   );
