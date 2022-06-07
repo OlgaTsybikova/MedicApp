@@ -1,7 +1,11 @@
 import MedicationsList from "../../components/MedicationsList/MedicationsList";
 
 const MedicationPage = () => {
-  return <MedicationsList />;
+  return (
+    <div>
+      <MedicationsList />
+    </div>
+  );
 };
 
 export default MedicationPage;

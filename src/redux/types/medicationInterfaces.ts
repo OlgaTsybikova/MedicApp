@@ -8,6 +8,7 @@ export interface IMedication {
   description: string[];
   uses: string[];
   dosis: string;
+  treatment?: string;
   id: string;
 }
 
