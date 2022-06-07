@@ -1,14 +1,21 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserPayload } from "../types/userInterface";
+import { createSlice } from "@reduxjs/toolkit";
+import { UserSliceState } from "../types/userInterface";
+
+const initialState: UserSliceState = {
+  username: "",
+  name: "",
+  logged: localStorage.getItem("token") ? true : false,
+};
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {},
+  initialState: initialState,
   reducers: {
-    logIn: (user, action: PayloadAction<UserPayload>) => ({
+    logIn: (user, action) => ({
       ...action.payload,
+      logged: true,
     }),
-    logOut: (user, action) => ({}),
+    logOut: (user, action) => initialState,
   },
 });
 
