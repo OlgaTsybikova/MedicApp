@@ -29,7 +29,7 @@ const Medication = ({
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap -m-4">
           <div className="p-4 md:w-1/3">
-            <div className="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">
+            <div className="h-full rounded-xl shadow-cla-blue overflow-hidden border">
               <img
                 src={image}
                 alt={title}
