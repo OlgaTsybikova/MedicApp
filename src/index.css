@@ -4,6 +4,11 @@
 
 @layer components {
   .button {
-    @apply hover:text-orange-700 active:-translate-y-1 transition;
+    @apply hover:text-orange-500 active:-translate-y-1 transition;
   }
+}
+
+html,
+body {
+  height: 100%;
 }

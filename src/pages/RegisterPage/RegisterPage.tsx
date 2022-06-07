@@ -3,12 +3,14 @@ import registerImage from "../../utils/register-image.png";
 const RegisterPage = () => {
   return (
     <>
-      <img
-        src={registerImage}
-        alt="register"
-        className="mt-8 space-y-6 object-contain md:object-scale-down"
-      />
-      <RegisterForm />
+      <div className="flex flex-col items-center">
+        <img
+          src={registerImage}
+          alt="register"
+          className="mt-8 space-y-6 h-68 w-96 md:object-scale-down"
+        />
+        <RegisterForm />
+      </div>
     </>
   );
 };

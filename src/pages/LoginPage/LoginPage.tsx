@@ -3,12 +3,14 @@ import login from "../../utils/login-image.png";
 const LoginPage = () => {
   return (
     <>
-      <img
-        src={login}
-        alt="login"
-        className="mt-8 space-y-6 object-contain md:object-scale-down"
-      />
-      <LoginForm />
+      <div className="flex flex-col items-center">
+        <img
+          src={login}
+          alt="login"
+          className="mt-8 space-y-6 h-68 w-96 md:object-scale-down"
+        />
+        <LoginForm />
+      </div>
     </>
   );
 };
