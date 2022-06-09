@@ -1,9 +1,12 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
 import {
+  createMedicationActionCreator,
   deleteMedicationsActionCreator,
   loadMedicationsActionCreator,
 } from "../features/medicationsSlice";
+import { AppDispatch } from "../store/store";
+import { errorModal } from "./userThunks";
 
 export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
   const url: string = `${process.env.REACT_APP_API_URL}medications/list`;
@@ -35,4 +38,28 @@ export const deleteMedicationsThunk =
         dispatch(deleteMedicationsActionCreator(id));
       }
     } catch (error) {}
+  };
+
+export const createMedicationThunk =
+  (newMedication: any) => async (dispatch: AppDispatch) => {
+    const token = localStorage.getItem("token");
+    const url: string = `${process.env.REACT_APP_API_URL}medications/create`;
+    try {
+      const { data: medication, status } = await axios.post(
+        url,
+        newMedication,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (status === 201) {
+        dispatch(createMedicationActionCreator(medication));
+      }
+    } catch (error) {
+      errorModal("Something went wrong, medication was not created...");
+    }
   };
