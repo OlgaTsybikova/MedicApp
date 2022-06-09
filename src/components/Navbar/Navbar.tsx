@@ -135,7 +135,7 @@ const ResponsiveNavbar = (): JSX.Element => {
             </li>
             <li>
               <a
-                href="/register"
+                href="/create"
                 className="button px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-gray-700 hover:opacity-75"
               >
                 Register

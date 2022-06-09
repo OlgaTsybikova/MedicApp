@@ -6,6 +6,7 @@ import ResponsiveNavbar from "./components/Navbar/Navbar";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import MedicationPage from "./pages/MedicationPage/MedicationPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import CreateEditPage from "./pages/CreatePage/CreateEditPage";
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
           element={
             <LoggedControl>
               <Navigate to="/medications" />
+            </LoggedControl>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <LoggedControl>
+              <CreateEditPage />
             </LoggedControl>
           }
         />

@@ -17,7 +17,7 @@ const MedicationsList = (): JSX.Element => {
   }, [dispatch]);
   return (
     <div>
-      <ul className="sm:text-center">
+      <ul className="">
         {medicationsList.map((medication: IMedication) => {
           return (
             <Medication

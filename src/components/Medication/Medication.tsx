@@ -4,11 +4,11 @@ import { deleteMedicationsThunk } from "../../redux/thunks/medicationsThunks";
 export type MedicationProps = {
   title?: string;
   image?: string;
-  category?: string[];
+  category?: string;
   prospect?: string;
-  description?: string[];
-  uses?: string[];
-  dosis?: string;
+  description?: string;
+  uses?: string;
+  treatment?: boolean;
   id: string;
 };
 
@@ -17,7 +17,7 @@ const Medication = ({
   image,
   prospect,
   uses,
-  dosis,
+  treatment,
   id,
 }: MedicationProps): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -31,9 +31,9 @@ const Medication = ({
         <div className="flex max-w-md shadow-lg rounded-lg mx-auto bg-white overflow-hidden md:max-w-2xl">
           <div className="w-1/3 bg-cover">
             <img
-              src={image}
+              src={`${process.env.REACT_APP_API_URL}images/${image}`}
               alt={title}
-              className="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100 pt-2"
+              className="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100 pt-3 md:object-scale-down"
             ></img>
           </div>
           <div className="w-2/3 p-4">
@@ -43,7 +43,9 @@ const Medication = ({
               Read Prospect here
             </a>
             <div className="flex item-center justify-between mt-3">
-              <h1 className="text-gray-700 font-regular text-xs">{dosis}</h1>
+              <h1 className="text-gray-700 font-regular text-xs">
+                {treatment}
+              </h1>
               <button className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2">
                 Add
               </button>

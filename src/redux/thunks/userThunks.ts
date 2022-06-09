@@ -10,7 +10,7 @@ const registerred = () =>
     position: toast.POSITION.TOP_CENTER,
   });
 
-const errorModal = (error: string) =>
+export const errorModal = (error: string) =>
   toast.error(error, {
     position: toast.POSITION.TOP_CENTER,
   });
