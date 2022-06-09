@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "../../redux/store/store";
-import { createMedicationThunk } from "../../redux/thunks/medicationsThunks";
 import MedicationForm from "./MedicationForm";
 
 const mockDispatch = jest.fn();
@@ -34,6 +33,29 @@ describe("Given a Medication Form create function", () => {
       const buttons = screen.getAllByRole("button", { name: "Create" });
       expect(textInputs).toHaveLength(expectedTextInput);
       expect(buttons).toHaveLength(expectedButtons);
+    });
+  });
+
+  describe("When the user clicks on the button after filling out the fields", () => {
+    test("Then it should dispatch createMedicationthunk", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <MedicationForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const expectedFormData = {
+        title: "Test",
+      };
+      const titleField = screen.getByLabelText("Title");
+      const button = screen.getByText("Create");
+
+      userEvent.type(titleField, expectedFormData.title);
+      userEvent.click(button);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });
