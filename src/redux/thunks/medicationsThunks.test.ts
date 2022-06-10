@@ -1,10 +1,12 @@
 import axios from "axios";
 import {
+  createMedicationActionCreator,
   deleteMedicationsActionCreator,
   loadMedicationsActionCreator,
 } from "../features/medicationsSlice";
 import mockmeds from "../mocks/mockmeds";
 import {
+  createMedicationThunk,
   deleteMedicationsThunk,
   loadMedicationsThunk,
 } from "./medicationsThunks";
@@ -37,6 +39,20 @@ describe("Given a medicationsThunk", () => {
         await thunk(dispatch);
         expect(dispatch).toHaveBeenCalledWith(expectedAction);
       });
+    });
+  });
+  describe("When the createmedicationThunk is invoked", () => {
+    test("Then it should dispatch deleteMedicationActionCreator", async () => {
+      const dispatch = jest.fn();
+      const newMedication = mockmeds[0];
+      const createdMedication = { ...newMedication, id: "testId" };
+      const response = { status: 201, data: createdMedication };
+      axios.post = jest.fn().mockResolvedValue(response);
+      const expectedAction = createMedicationActionCreator(createdMedication);
+      const thunk = await createMedicationThunk(newMedication);
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
   });
 });
