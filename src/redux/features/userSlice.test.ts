@@ -1,8 +1,5 @@
-import mockmeds from "../mocks/mockmeds";
 import { UserSliceState } from "../types/userInterface";
-import medicationsSlice, {
-  createMedicationActionCreator,
-} from "./medicationsSlice";
+
 import userReducer, { loginActionCreator } from "./userSlice";
 
 describe("Given a usersSlice with a login reducer", () => {
