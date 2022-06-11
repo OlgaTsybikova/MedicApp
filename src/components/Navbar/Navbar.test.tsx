@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { store } from "../../redux/store/store";
 import Navbar from "./Navbar";
 
 describe("Given a Navbar component function", () => {
@@ -7,7 +9,13 @@ describe("Given a Navbar component function", () => {
     test("Then it should render one div element", () => {
       const expectedNumberOfElements = 1;
 
-      render(<Navbar />, { wrapper: MemoryRouter });
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <Navbar />
+          </BrowserRouter>
+        </Provider>
+      );
 
       const navbar = screen.getAllByRole("img", { name: "logo" });
 

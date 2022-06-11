@@ -1,15 +1,31 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { logoutActionCreator } from "../../redux/features/userSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import logo from "../../utils/icons8-first-aid-64.png";
 
 const ResponsiveNavbar = (): JSX.Element => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const actualUser = useAppSelector((state) => state.user);
+  const logged = useAppSelector((state) => state.user.logged);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(logoutActionCreator(actualUser));
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
-    <nav className="px-10 sm:px-4 py-3 w-screen">
-      <div className="container flex flex-wrap items-center justify-around">
+    <nav className="bg-white w-full rounded shadow-lg">
+      <div className="flex items-center justify-between px-4 py-3">
         <img src={logo} alt="logo" className="h-8" />
         <a
           href="#home"
-          className="text-xl font-bold no-underline text-green-800 hover:text-gray-600"
+          className="text-xl font-bold no-underline text-gray-900 hover:text-gray-100"
         >
-          <span className="self-center text-xl font-semibold whitespace-nowrap">
+          <span className="self-center text-green-900 text-xl font-semibold whitespace-nowrap">
             MedicApp
           </span>
         </a>
@@ -19,7 +35,7 @@ const ResponsiveNavbar = (): JSX.Element => {
             data-collapse-toggle="mobile-menu-3"
             aria-controls="mobile-menu-3"
             aria-expanded="false"
-            className="button md:hidden text-gray-900 dark:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 mr-4"
+            className="button text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-300 focus:ring-gray-300 rounded-lg p-2.5 mr-2 inline-flex items-center text-sm md:hidden focus:ring-2"
           >
             <svg
               className="w-5 h-5"
@@ -57,9 +73,10 @@ const ResponsiveNavbar = (): JSX.Element => {
             ></input>
           </div>
           <button
+            onClick={() => setMenuOpen(!menuOpen)}
             data-collapse-toggle="mobile-menu-3"
             type="button"
-            className="button inline-flex items-center p-2 text-sm text-gray-900 rounded-lg md:hidden hover:bg-gray-100 dark:hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400"
+            className="button text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-300 focus:ring-gray-300 rounded-lg p-2.5 mx-2 inline-flex items-center text-sm md:hidden focus:ring-2"
             aria-controls="mobile-menu-3"
             aria-expanded="false"
           >
@@ -69,11 +86,19 @@ const ResponsiveNavbar = (): JSX.Element => {
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                fillRule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              ></path>
+              {menuOpen && (
+                <path
+                  fillRule="evenodd"
+                  d="M16.278 14.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+                />
+              )}
+              {!menuOpen && (
+                <path
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clipRule="evenodd"
+                ></path>
+              )}
             </svg>
             <svg
               className="hidden w-6 h-6"
@@ -108,41 +133,70 @@ const ResponsiveNavbar = (): JSX.Element => {
                 ></path>
               </svg>
             </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block p-2 pl-10 w-full text-gray-900 bg-gray-50"
-              placeholder="Search..."
-            ></input>
           </div>
-          <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+        </div>
+      </div>
+      <div
+        className={menuOpen ? "block absolute bg-white w-full z-10" : "hidden"}
+      >
+        <ul className="px-2 pt-2 pb-4 flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+          {logged ? (
+            <>
+              <li>
+                <a
+                  href="/update/:id"
+                  className="block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
+                  aria-current="page"
+                >
+                  Update
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/medications"
+                  className="mt-1 block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
+                >
+                  Medications
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/create"
+                  className="mt-1 block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
+                >
+                  Create
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={logout}
+                  href="/"
+                  className="mt-1 block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
+                >
+                  Logout
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/register"
+                  className="mt-1 block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
+                >
+                  Register
+                </a>
+              </li>
+            </>
+          ) : (
             <li>
               <a
                 href="/login"
-                className="button px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-gray-700 hover:opacity-75"
+                className="block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
                 aria-current="page"
               >
                 Login
               </a>
             </li>
-            <li>
-              <a
-                href="/medications"
-                className="button px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-gray-700 hover:opacity-75"
-              >
-                Medications
-              </a>
-            </li>
-            <li>
-              <a
-                href="/create"
-                className="button px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-gray-700 hover:opacity-75"
-              >
-                Register
-              </a>
-            </li>
-          </ul>
-        </div>
+          )}
+        </ul>
       </div>
     </nav>
   );

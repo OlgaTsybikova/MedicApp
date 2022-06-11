@@ -7,6 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
+      montserrat: ["Montserrat", "serif"],
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],
     },

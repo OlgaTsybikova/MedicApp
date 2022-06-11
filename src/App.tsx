@@ -7,8 +7,19 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import MedicationPage from "./pages/MedicationPage/MedicationPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import CreateEditPage from "./pages/CreatePage/CreateEditPage";
+import { useAppDispatch } from "./redux/hooks/hooks";
+import jwtDecode from "jwt-decode";
+import { loginActionCreator } from "./redux/features/userSlice";
 
 function App() {
+  const token = localStorage.getItem("token");
+  const dispatch = useAppDispatch();
+
+  try {
+    const user = jwtDecode(token as string);
+    dispatch(loginActionCreator(user));
+  } catch (error) {}
+
   return (
     <Layout>
       <ResponsiveNavbar />
@@ -17,7 +28,7 @@ function App() {
           path="/"
           element={
             <LoggedControl>
-              <Navigate to="/medications" />
+              <Navigate to="/login" />
             </LoggedControl>
           }
         />
