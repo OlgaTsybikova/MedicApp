@@ -4,6 +4,7 @@ import {
   createMedicationActionCreator,
   deleteMedicationsActionCreator,
   loadMedicationsActionCreator,
+  updateMedicationActionCreator,
 } from "../features/medicationsSlice";
 import { AppDispatch } from "../store/store";
 import { errorModal } from "./userThunks";
@@ -61,5 +62,32 @@ export const createMedicationThunk =
       }
     } catch (error) {
       errorModal("Something went wrong, medication was not created...");
+    }
+  };
+
+export const updateMedicationThunk =
+  (medicationId: string, MedicationData: FormData) =>
+  async (dispatch: AppDispatch) => {
+    const url = process.env.REACT_APP_API_URL;
+    try {
+      const {
+        data: { updatedMedication },
+      } = await axios.put(
+        `${url}medications/update/${medicationId}`,
+        MedicationData,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (updatedMedication) {
+        dispatch(updateMedicationActionCreator(updatedMedication));
+      }
+    } catch (error: any) {
+      errorModal("Unable to update medication infomation");
+      return error.message;
     }
   };
