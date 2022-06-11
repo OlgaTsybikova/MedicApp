@@ -10,7 +10,7 @@ export interface IMedication {
   dosis?: string;
   treatment: boolean;
   id: string;
-  owner: string | undefined;
+  owner: string;
 }
 
 export interface MedicationListProps {

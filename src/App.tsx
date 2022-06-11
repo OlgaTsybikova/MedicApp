@@ -30,6 +30,14 @@ function App() {
           }
         />
         <Route
+          path="/update/:id"
+          element={
+            <LoggedControl>
+              <CreateEditPage />
+            </LoggedControl>
+          }
+        />
+        <Route
           path="/register"
           element={
             <LoggedOutControl>

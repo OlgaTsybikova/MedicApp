@@ -1,22 +1,32 @@
 import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { createMedicationThunk } from "../../redux/thunks/medicationsThunks";
+import {
+  createMedicationThunk,
+  updateMedicationThunk,
+} from "../../redux/thunks/medicationsThunks";
 import { IMedication } from "../../redux/types/medicationInterfaces";
 import MedicationFormStyled from "./MedicationFormStyled";
 
 const MedicationForm = (): JSX.Element => {
+  const { id } = useParams();
+
   const dispatch = useAppDispatch();
-  const userId = useAppSelector((state) => state.user.id);
+
+  const { medications } = useAppSelector((state) => state);
+
+  const currentMedication = medications.find(
+    (medication: { id: string }) => medication.id === id
+  );
 
   const emptyFields: IMedication = {
-    title: "",
-    category: "",
-    image: "",
-    uses: "",
-    treatment: false,
-    id: "",
-    owner: userId,
+    title: currentMedication?.title || "",
+    category: currentMedication?.category || "",
+    image: currentMedication?.image || "",
+    uses: currentMedication?.uses || "",
+    treatment: currentMedication?.treatment || false,
+    id: currentMedication?.id || "",
+    owner: currentMedication?.id || "",
   };
 
   const [formData, setFormData] = useState<IMedication>(emptyFields);
@@ -44,7 +54,7 @@ const MedicationForm = (): JSX.Element => {
     });
   };
 
-  const submitMedicationForm = (event: { preventDefault: () => void }) => {
+  const submitMedicationForm = (event: React.FormEvent) => {
     event.preventDefault();
 
     const newMedication = new FormData();
@@ -54,7 +64,12 @@ const MedicationForm = (): JSX.Element => {
     newMedication.append("treatment", formData.treatment.toString());
     newMedication.append("image", formData.image);
 
-    dispatch(createMedicationThunk(newMedication));
+    if (id) {
+      dispatch(updateMedicationThunk(id, newMedication));
+    } else {
+      dispatch(createMedicationThunk(newMedication));
+    }
+
     setFormData(emptyFields);
   };
 
@@ -104,17 +119,20 @@ const MedicationForm = (): JSX.Element => {
             <option value="" disabled>
               Choose Category
             </option>
-            <option>Category 2</option>
-            <option>Category 2</option>
-            <option>Category 2</option>
+            <option>Head</option>
+            <option>Back</option>
+            <option>Stomach</option>
           </select>
         </div>
 
         <div className="flex justify-center mt-8">
           <div className="max-w-2xl rounded-lg shadow-xl bg-gray-50">
             <div className="m-4">
-              <label className="inline-block mb-2 text-gray-500">
-                File Upload
+              <label
+                htmlFor="image"
+                className="inline-block mb-2 text-gray-500"
+              >
+                {emptyFields.image ? emptyFields.image : "File Upload"}
               </label>
               <div className="flex items-center justify-center w-full">
                 <label className="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -138,6 +156,7 @@ const MedicationForm = (): JSX.Element => {
                     </p>
                   </div>
                   <input
+                    id="image"
                     type="file"
                     onChange={uploadImage}
                     className="opacity-0"
@@ -209,12 +228,22 @@ const MedicationForm = (): JSX.Element => {
           </div>
         </div>
         <div className="flex space-x-2 justify-center">
-          <button
-            type="submit"
-            className="inline-block px-20 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-          >
-            Create
-          </button>
+          {!id && (
+            <button
+              type="submit"
+              className="inline-block px-20 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Create
+            </button>
+          )}
+          {id && (
+            <button
+              type="submit"
+              className="inline-block px-20 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Edit
+            </button>
+          )}
         </div>
         <p>
           Want to search one?{" "}
