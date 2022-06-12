@@ -139,7 +139,7 @@ const ResponsiveNavbar = (): JSX.Element => {
       <div
         className={menuOpen ? "block absolute bg-white w-full z-10" : "hidden"}
       >
-        <ul className="px-2 pt-2 pb-4 flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+        <ul className="px-2 pt-2 pb-4 border border-gray-400 bg-teal-50 flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
           {logged ? (
             <>
               <li>

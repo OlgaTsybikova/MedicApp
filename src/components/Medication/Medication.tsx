@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { deleteMedicationsThunk } from "../../redux/thunks/medicationsThunks";
 
@@ -24,6 +25,10 @@ const Medication = ({
   const handleDelete = () => {
     dispatch(deleteMedicationsThunk(id));
   };
+  const navigate = useNavigate();
+  const navigateToEdit = () => {
+    navigate(`/update/${id}`);
+  };
 
   return (
     <li className="container">
@@ -46,8 +51,11 @@ const Medication = ({
               <h1 className="text-gray-700 font-regular text-xs">
                 {treatment}
               </h1>
-              <button className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2">
-                Add
+              <button
+                onClick={navigateToEdit}
+                className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
+              >
+                Edit
               </button>
               <button
                 onClick={handleDelete}
