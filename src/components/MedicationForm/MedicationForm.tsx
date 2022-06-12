@@ -82,6 +82,7 @@ const MedicationForm = (): JSX.Element => {
         autoComplete="off"
         noValidate
         onSubmit={submitMedicationForm}
+        encType="multipart/form-data"
       >
         <h1 className="text-3xl text-cyan-800 font-bold">Create Medication</h1>
         <div className="relative group">

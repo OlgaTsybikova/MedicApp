@@ -6,6 +6,10 @@ import {
   loadMedicationsActionCreator,
   updateMedicationActionCreator,
 } from "../features/medicationsSlice";
+import {
+  loadingOffActionCreator,
+  loadingOnActionCreator,
+} from "../features/uiSlice/uiSlice";
 import { AppDispatch } from "../store/store";
 import { errorModal } from "./userThunks";
 
@@ -14,6 +18,7 @@ export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
   const token = localStorage.getItem("token");
 
   try {
+    dispatch(loadingOnActionCreator({ loading: true }));
     const { data, status } = await axios.get(url, {
       headers: { authorization: `Bearer ${token}` },
     });
@@ -23,10 +28,12 @@ export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
   } catch (error: any) {
     return error.message;
   }
+  dispatch(loadingOffActionCreator({ loading: false }));
 };
 export const deleteMedicationsThunk =
   (id: string) => async (dispatch: Dispatch) => {
     try {
+      dispatch(loadingOnActionCreator({ loading: true }));
       const token = localStorage.getItem("token");
       const { status } = await axios.delete(
         `${process.env.REACT_APP_API_URL}medications/${id}`,
@@ -39,13 +46,15 @@ export const deleteMedicationsThunk =
         dispatch(deleteMedicationsActionCreator(id));
       }
     } catch (error) {}
+    dispatch(loadingOffActionCreator({ loading: false }));
   };
 
 export const createMedicationThunk =
   (newMedication: any) => async (dispatch: AppDispatch) => {
-    const token = localStorage.getItem("token");
-    const url: string = `${process.env.REACT_APP_API_URL}medications/create`;
     try {
+      const token = localStorage.getItem("token");
+      const url: string = `${process.env.REACT_APP_API_URL}medications/create`;
+      dispatch(loadingOnActionCreator({ loading: true }));
       const { data: medication, status } = await axios.post(
         url,
         newMedication,
@@ -63,13 +72,15 @@ export const createMedicationThunk =
     } catch (error) {
       errorModal("Something went wrong, medication was not created...");
     }
+    dispatch(loadingOffActionCreator({ loading: false }));
   };
 
 export const updateMedicationThunk =
   (medicationId: string, MedicationData: FormData) =>
   async (dispatch: AppDispatch) => {
-    const url = process.env.REACT_APP_API_URL;
     try {
+      dispatch(loadingOnActionCreator({ loading: true }));
+      const url = process.env.REACT_APP_API_URL;
       const {
         data: { updatedMedication },
       } = await axios.put(
@@ -90,4 +101,5 @@ export const updateMedicationThunk =
       errorModal("Unable to update medication infomation");
       return error.message;
     }
+    dispatch(loadingOffActionCreator({ loading: false }));
   };
