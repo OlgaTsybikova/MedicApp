@@ -14,7 +14,7 @@ describe("Given a registerThunk function", () => {
         username: "tata",
         password: "tata",
       });
-      await thunk(dispatch());
+      await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalled();
     });

@@ -7,14 +7,16 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import MedicationPage from "./pages/MedicationPage/MedicationPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import CreateEditPage from "./pages/CreatePage/CreateEditPage";
-import { useAppDispatch } from "./redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
 import jwtDecode from "jwt-decode";
 import { loginActionCreator } from "./redux/features/userSlice";
-
+import Spinner from "./components/Spinner/Spinner";
+import { spinnerState } from "./redux/features/uiSlice/uiSlice";
 function App() {
   const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
 
+  const spinnerIsVisible = useAppSelector(spinnerState);
   try {
     const user = jwtDecode(token as string);
     dispatch(loginActionCreator(user));
@@ -23,6 +25,7 @@ function App() {
   return (
     <Layout>
       <ResponsiveNavbar />
+      <Spinner visible={spinnerIsVisible} />
       <Routes>
         <Route
           path="/"
