@@ -2,7 +2,7 @@ import MedicationsList from "../../components/MedicationsList/MedicationsList";
 
 const MedicationPage = () => {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <MedicationsList />
     </div>
   );

@@ -23,60 +23,62 @@ function App() {
   } catch (error) {}
 
   return (
-    <Layout>
+    <>
       <ResponsiveNavbar />
-      <Spinner visible={spinnerIsVisible} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <LoggedControl>
-              <Navigate to="/login" />
-            </LoggedControl>
-          }
-        />
-        <Route
-          path="/create"
-          element={
-            <LoggedControl>
-              <CreateEditPage />
-            </LoggedControl>
-          }
-        />
-        <Route
-          path="/update/:id"
-          element={
-            <LoggedControl>
-              <CreateEditPage />
-            </LoggedControl>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <LoggedOutControl>
-              <RegisterPage />
-            </LoggedOutControl>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <LoggedOutControl>
-              <LoginPage />
-            </LoggedOutControl>
-          }
-        />
-        <Route
-          path="/medications"
-          element={
-            <LoggedControl>
-              <MedicationPage />
-            </LoggedControl>
-          }
-        />
-      </Routes>
-    </Layout>
+      <Layout>
+        <Spinner visible={spinnerIsVisible} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LoggedControl>
+                <Navigate to="/login" />
+              </LoggedControl>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <LoggedControl>
+                <CreateEditPage />
+              </LoggedControl>
+            }
+          />
+          <Route
+            path="/update/:id"
+            element={
+              <LoggedControl>
+                <CreateEditPage />
+              </LoggedControl>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <LoggedOutControl>
+                <RegisterPage />
+              </LoggedOutControl>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <LoggedOutControl>
+                <LoginPage />
+              </LoggedOutControl>
+            }
+          />
+          <Route
+            path="/medications"
+            element={
+              <LoggedControl>
+                <MedicationPage />
+              </LoggedControl>
+            }
+          />
+        </Routes>
+      </Layout>
+    </>
   );
 }
 

@@ -48,11 +48,13 @@ const LoginForm = (): JSX.Element => {
         autoComplete="off"
         noValidate
       >
-        <h1 className="text-3xl text-cyan-800 font-bold">Welcome Back!</h1>
+        <h1 className="text-center text-3xl text-cyan-800 font-bold">
+          Welcome Back!
+        </h1>
         <div className="relative group">
           <input
             name="username"
-            className="login-form w-full h-14 px-4 text-lg peer bg-transparent border border-gray-300 placeholder-gray-500 text-gray-900focus:outline-none focus:ring-verde focus:z-10"
+            className="login-form w-full h-14 px-4 text-lg peer border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10"
             type="text"
             id="username"
             placeholder=" "
@@ -62,7 +64,7 @@ const LoginForm = (): JSX.Element => {
           />
           <label
             htmlFor="username"
-            className="transform transition-all absolute top-0 left-0 h-full flex text-gray-500 items-center pl-2 text-lg group-focus-within:text-lg peer-valid:text-lg group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0"
+            className="transform transition-all absolute top-0 left-0 h-full flex text-gray-600 items-center pl-2 text-lg group-focus-within:text-lg peer-valid:text-lg group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0"
           >
             Username
           </label>
