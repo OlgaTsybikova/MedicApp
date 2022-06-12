@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import {
   createMedicationThunk,
@@ -12,6 +12,7 @@ const MedicationForm = (): JSX.Element => {
   const { id } = useParams();
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { medications } = useAppSelector((state) => state);
 
@@ -32,18 +33,14 @@ const MedicationForm = (): JSX.Element => {
   const [formData, setFormData] = useState<IMedication>(emptyFields);
 
   const updateData = (
-    event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
   ): void => {
     setFormData({
       ...formData,
       [event.target.id]: event.target.value,
-    });
-  };
-
-  const selectChange = (event: ChangeEvent<HTMLSelectElement>): void => {
-    setFormData({
-      ...formData,
-      [event.target.id]: event.target.value?.[0] || "",
     });
   };
 
@@ -71,6 +68,7 @@ const MedicationForm = (): JSX.Element => {
     }
 
     setFormData(emptyFields);
+    navigate("/medications");
   };
 
   return (
@@ -118,25 +116,33 @@ const MedicationForm = (): JSX.Element => {
           ></label>
           <select
             id="category"
-            onChange={selectChange}
+            onChange={updateData}
             autoComplete="off"
             defaultValue={""}
             multiple={false}
-            className="form-select text-lg rounded-2xl block w-full h-14 px-4 peer border border-gray-400 focus:z-10 placeholder-gray-500 mt-1 text-gray-900"
+            className="form-select transition ease-in-out text-lg rounded-2xl block w-full h-14 px-4 peer border border-gray-400 focus:z-10 placeholder-gray-500 mt-1 text-gray-900 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           >
             <option value="" disabled>
               Choose Category
             </option>
-            <option>Head</option>
-            <option>Back</option>
-            <option>Neck</option>
-            <option>Face</option>
-            <option>Feet</option>
-            <option>Hands</option>
-            <option>Stomach</option>
-            <option>Eyes</option>
-            <option>Mouth</option>
-            <option>Heart</option>
+            <option value="Analgesic">Analgesic, pain</option>
+            <option value="Indigestion">Indigestion, heartburn</option>
+            <option value="Anxiety">Anxiety</option>
+            <option value="Antibiotic">Antibiotic</option>
+            <option value="Antidepressant">Antidepressant</option>
+            <option value="Antidiarrheal">Antidiarrheal</option>
+            <option value="Nausea">Nausea and vomitting</option>
+            <option value="Blood Pressure">BloodPressure</option>
+            <option value="Inflammation">Inflammation</option>
+            <option value="Antineoplastic">
+              Antineoplastic - cancer treatment
+            </option>
+            <option value="Fever">Fever</option>
+            <option value="Cold Cure">Cold Cure</option>
+            <option value="Cough">Cough</option>
+            <option value="Asthma">Asthma</option>
+            <option value="Sleep">Sleep</option>
+            <option value="Vitamins">Vitamins</option>
           </select>
         </div>
 
@@ -223,8 +229,8 @@ const MedicationForm = (): JSX.Element => {
                 type="radio"
                 className="form-radio"
                 name="treatment"
-                value="start"
                 onChange={updateData}
+                value={formData.treatment.toString()}
               ></input>
               <span className="ml-2">Start treatment</span>
             </label>
