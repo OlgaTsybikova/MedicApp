@@ -22,7 +22,7 @@ const ResponsiveNavbar = (): JSX.Element => {
       <div className="flex items-center justify-between px-4 py-3">
         <img src={logo} alt="logo" className="h-8" />
         <a
-          href="#home"
+          href="/medications"
           className="text-xl font-bold no-underline text-gray-900 hover:text-gray-100"
         >
           <span className="self-center text-green-900 text-xl font-semibold whitespace-nowrap">
@@ -144,15 +144,6 @@ const ResponsiveNavbar = (): JSX.Element => {
             <>
               <li>
                 <a
-                  href="/update/:id"
-                  className="block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
-                  aria-current="page"
-                >
-                  Update
-                </a>
-              </li>
-              <li>
-                <a
                   href="/medications"
                   className="mt-1 block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
                 >
@@ -176,6 +167,18 @@ const ResponsiveNavbar = (): JSX.Element => {
                   Logout
                 </a>
               </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <a
+                  href="/login"
+                  className="block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
+                  aria-current="page"
+                >
+                  Login
+                </a>
+              </li>
               <li>
                 <a
                   href="/register"
@@ -185,16 +188,6 @@ const ResponsiveNavbar = (): JSX.Element => {
                 </a>
               </li>
             </>
-          ) : (
-            <li>
-              <a
-                href="/login"
-                className="block px-2 py-1 text-gray-800 font-semibold rounded hover:bg-gray-300"
-                aria-current="page"
-              >
-                Login
-              </a>
-            </li>
           )}
         </ul>
       </div>

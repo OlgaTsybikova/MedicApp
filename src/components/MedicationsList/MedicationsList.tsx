@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { RootState } from "../../redux/store/store";
 import { loadMedicationsThunk } from "../../redux/thunks/medicationsThunks";
 import { IMedication } from "../../redux/types/medicationInterfaces";
-import Medication, { MedicationProps } from "../Medication/Medication";
+import Medication from "../Medication/Medication";
 
 const MedicationsList = (): JSX.Element => {
   const medicationsList = useAppSelector(
@@ -18,14 +18,9 @@ const MedicationsList = (): JSX.Element => {
   return (
     <div>
       <ul className="">
-        {medicationsList.map((medication: IMedication) => {
-          return (
-            <Medication
-              key={medication.id}
-              {...(medication as MedicationProps)}
-            />
-          );
-        })}
+        {medicationsList.map((medication: IMedication) => (
+          <Medication key={medication.id} medtoshow={medication} />
+        ))}
       </ul>
     </div>
   );
