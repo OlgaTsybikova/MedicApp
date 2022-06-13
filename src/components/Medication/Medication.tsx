@@ -65,12 +65,14 @@ const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
                 </h1>
               </div>
               <div className="flex justify-evenly pt-10">
-                <button
-                  onClick={navigateToEdit}
-                  className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
-                >
-                  Edit
-                </button>
+                {!medicationIdDetails && (
+                  <button
+                    onClick={navigateToEdit}
+                    className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
+                  >
+                    Edit
+                  </button>
+                )}
                 <button
                   onClick={handleDelete}
                   className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
