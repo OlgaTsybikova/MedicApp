@@ -11,6 +11,8 @@ export interface IMedication {
   treatment: boolean;
   id: string;
   owner: string;
+  defaultImage?: string;
+  medication?: string;
 }
 
 export interface MedicationListProps {

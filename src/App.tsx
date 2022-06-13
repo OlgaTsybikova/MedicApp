@@ -12,6 +12,8 @@ import jwtDecode from "jwt-decode";
 import { loginActionCreator } from "./redux/features/userSlice";
 import Spinner from "./components/Spinner/Spinner";
 import { spinnerState } from "./redux/features/uiSlice/uiSlice";
+import DetailsMedicationPage from "./pages/DetailsMedicationPage/DetailsMedicationPage";
+
 function App() {
   const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
@@ -73,6 +75,14 @@ function App() {
             element={
               <LoggedControl>
                 <MedicationPage />
+              </LoggedControl>
+            }
+          />
+          <Route
+            path="/medications/:id"
+            element={
+              <LoggedControl>
+                <DetailsMedicationPage />
               </LoggedControl>
             }
           />
