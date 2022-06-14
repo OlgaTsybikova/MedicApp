@@ -19,7 +19,7 @@ describe("Given a Medication component", () => {
       );
 
       const givenMedication = screen.getAllByRole("button", {
-        name: "Edit",
+        name: "Details",
       });
 
       expect(givenMedication.length).toEqual(expectedNumberOfElements);

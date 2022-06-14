@@ -1,4 +1,3 @@
-import { Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
 import {
   createMedicationActionCreator,
@@ -11,14 +10,13 @@ import {
   loadingOnActionCreator,
 } from "../features/uiSlice/uiSlice";
 import { AppDispatch } from "../store/store";
-import { errorModal } from "./userThunks";
+import { errorModal, successModal } from "./userThunks";
 
 const url = process.env.REACT_APP_API_URL;
 
-export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
+export const loadMedicationsThunk = () => async (dispatch: AppDispatch) => {
   const loadUrl = `${url}medications`;
   const token = localStorage.getItem("token");
-
   try {
     dispatch(loadingOnActionCreator({ loading: true }));
     const { data, status } = await axios.get(loadUrl, {
@@ -33,7 +31,7 @@ export const loadMedicationsThunk = () => async (dispatch: Dispatch) => {
   dispatch(loadingOffActionCreator({ loading: false }));
 };
 export const deleteMedicationsThunk =
-  (id: string) => async (dispatch: Dispatch) => {
+  (id: string) => async (dispatch: AppDispatch) => {
     try {
       dispatch(loadingOnActionCreator({ loading: true }));
       const token = localStorage.getItem("token");
@@ -43,8 +41,12 @@ export const deleteMedicationsThunk =
 
       if (status === 200) {
         dispatch(deleteMedicationsActionCreator(id));
+        dispatch(loadMedicationsThunk());
       }
-    } catch (error) {}
+    } catch (error) {
+      errorModal("Oops.. somehting went wrong, Try again...");
+    }
+    successModal("Great! The medication has been deleted!");
     dispatch(loadingOffActionCreator({ loading: false }));
   };
 
@@ -67,11 +69,13 @@ export const createMedicationThunk =
 
       if (status === 201) {
         dispatch(createMedicationActionCreator(medication));
+        dispatch(loadMedicationsThunk());
       }
     } catch (error) {
       errorModal("Something went wrong, medication was not created...");
     }
     dispatch(loadingOffActionCreator({ loading: false }));
+    successModal("Great! The medication has been created!");
   };
 
 export const updateMedicationThunk =
@@ -90,10 +94,12 @@ export const updateMedicationThunk =
 
       if (updatedMedication) {
         dispatch(updateMedicationActionCreator(updatedMedication));
+        await dispatch(loadMedicationsThunk());
       }
     } catch (error: any) {
       errorModal("Unable to update medication infomation");
       return error.message;
     }
     dispatch(loadingOffActionCreator({ loading: false }));
+    successModal("Great! The medication has been edited!");
   };
