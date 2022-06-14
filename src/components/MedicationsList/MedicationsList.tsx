@@ -15,6 +15,7 @@ const MedicationsList = (): JSX.Element => {
   useEffect(() => {
     dispatch(loadMedicationsThunk());
   }, [dispatch]);
+
   return (
     <div>
       <ul className="">

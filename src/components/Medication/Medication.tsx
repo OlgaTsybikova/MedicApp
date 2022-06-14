@@ -15,6 +15,7 @@ const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
 
   const handleDelete = () => {
     dispatch(deleteMedicationsThunk(medtoshow.id));
+    navigate(`/medications`);
   };
   const navigateToEdit = () => {
     navigate(`/update/${medtoshow.id}`);
@@ -32,14 +33,14 @@ const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
   };
   return (
     <>
-      <li className="container" key={medtoshow.id}>
+      <li className="container list-none" key={medtoshow.id}>
         <div className="py-6 px-8">
           <div className="flex max-w-md shadow-lg rounded-lg mx-auto bg-white border border-gray-300 overflow-hidden md:max-w-2xl">
             <div className="w-1/3 bg-cover">
               <img
                 src={`${url}images/${medtoshow.image}`}
-                alt={medtoshow.title}
                 onError={handleImageError}
+                alt={medtoshow.title}
                 className="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100 pt-3 md:object-scale-down"
               ></img>
               <h1 className="text-gray-800 font-semibold text-xl capitalize">
@@ -65,26 +66,31 @@ const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
                 </h1>
               </div>
               <div className="flex justify-evenly pt-10">
+                {medicationIdDetails && (
+                  <>
+                    <button
+                      onClick={navigateToEdit}
+                      className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      onClick={handleDelete}
+                      className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
                 {!medicationIdDetails && (
                   <button
-                    onClick={navigateToEdit}
+                    onClick={navigateToMedicationDetails}
                     className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
                   >
-                    Edit
+                    Details
                   </button>
                 )}
-                <button
-                  onClick={handleDelete}
-                  className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
-                >
-                  Delete
-                </button>
-                <button
-                  onClick={navigateToMedicationDetails}
-                  className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
-                >
-                  Details
-                </button>
               </div>
             </div>
           </div>
