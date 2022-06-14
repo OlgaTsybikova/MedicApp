@@ -94,7 +94,7 @@ export const updateMedicationThunk =
 
       if (updatedMedication) {
         dispatch(updateMedicationActionCreator(updatedMedication));
-        await dispatch(loadMedicationsThunk());
+        dispatch(loadMedicationsThunk());
       }
     } catch (error: any) {
       errorModal("Unable to update medication infomation");

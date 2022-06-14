@@ -6,6 +6,9 @@
   .button {
     @apply hover:text-teal-700 active:-translate-y-1 transition;
   }
+  .prose {
+    @apply special-underline;
+  }
 }
 
 html,

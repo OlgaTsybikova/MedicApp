@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Medication from "../../components/Medication/Medication";
+import DetailsMedication from "../../components/DetailsMedication/DetailsMedication";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { medicationByIdThunk } from "../../redux/thunks/medicationById/medicationByIdThunks";
 
@@ -15,7 +15,7 @@ const DetailsMedicationPage = (): JSX.Element => {
 
   return (
     <div className="flex flex-col items-center">
-      <Medication medtoshow={medication} />
+      <DetailsMedication medtoshow={medication} />
     </div>
   );
 };
