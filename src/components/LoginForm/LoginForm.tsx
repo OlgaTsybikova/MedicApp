@@ -99,7 +99,7 @@ const LoginForm = (): JSX.Element => {
         </div>
         <p>
           Don't have an account?{" "}
-          <Link to={"/create"} className="text-1 text-cyan-800 font-bold">
+          <Link to={"/register"} className="text-1 text-cyan-800 font-bold">
             Create Account
           </Link>
         </p>

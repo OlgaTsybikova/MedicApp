@@ -32,6 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "cypress:open": "cypress open",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -59,6 +60,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
+    "cypress": "^10.1.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "husky": "^7.0.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"

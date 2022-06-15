@@ -54,5 +54,10 @@ describe("Given a medicationsThunk", () => {
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
+    describe("When the Update medication thunk is invoked", ()=>{
+      test("Then it should dispatch update medication action creator", ()=>{
+        
+      });
+    });
   });
 });
