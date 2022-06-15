@@ -31,6 +31,7 @@ const ResponsiveNavbar = (): JSX.Element => {
         </a>
         <div className="flex md:order-2 px-4">
           <button
+            title="search"
             type="button"
             data-collapse-toggle="mobile-menu-3"
             aria-controls="mobile-menu-3"
@@ -73,6 +74,7 @@ const ResponsiveNavbar = (): JSX.Element => {
             ></input>
           </div>
           <button
+            title="menu"
             onClick={() => setMenuOpen(!menuOpen)}
             data-collapse-toggle="mobile-menu-3"
             type="button"
