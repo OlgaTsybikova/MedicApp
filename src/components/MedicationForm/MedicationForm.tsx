@@ -118,8 +118,8 @@ const MedicationForm = (): JSX.Element => {
             id="category"
             onChange={updateData}
             autoComplete="off"
-            defaultValue={""}
             multiple={false}
+            value={formData.category}
             className="form-select transition ease-in-out text-lg rounded-2xl block w-full h-14 px-4 peer border border-gray-400 focus:z-10 placeholder-gray-500 mt-1 text-gray-900 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           >
             <option value="" disabled>
@@ -221,11 +221,13 @@ const MedicationForm = (): JSX.Element => {
             ></textarea>
           </div>
         </div>
+
         <div className="mt-4">
           <span className="text-gray-700 text-lg">Treatment</span>
           <div className="mt-2">
-            <label className="inline-flex items-center">
+            <label htmlFor="start" className="inline-flex items-center">
               <input
+                id="start"
                 type="radio"
                 className="form-radio"
                 name="treatment"
@@ -236,18 +238,19 @@ const MedicationForm = (): JSX.Element => {
             </label>
           </div>
           <div className="mt-2">
-            <label className="inline-flex items-center">
+            <label htmlFor="later" className="inline-flex items-center">
               <input
+                id="later"
                 type="radio"
                 className="form-radio"
                 name="treatment"
-                value="notnow"
                 onChange={updateData}
               ></input>
               <span className="ml-2">Not now</span>
             </label>
           </div>
         </div>
+
         <div className="flex space-x-2 justify-center">
           {!id && (
             <button

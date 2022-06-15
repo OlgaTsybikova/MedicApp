@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks/hooks";
+import { deleteMedicationsThunk } from "../../redux/thunks/medicationsThunks";
 
 import { IMedication } from "../../redux/types/medicationInterfaces";
 
@@ -8,6 +10,7 @@ export type MedicationProps = {
 
 const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const url = process.env.REACT_APP_API_URL as string;
 
   const navigateToMedicationDetails = () => {
@@ -19,6 +22,10 @@ const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
       : "/backup.png";
     (error.target as HTMLImageElement).onerror = null;
     (error.target as HTMLImageElement).src = defaultSrc as string;
+  };
+  const handleDelete = () => {
+    dispatch(deleteMedicationsThunk(medtoshow.id));
+    navigate(`/medications`);
   };
   return (
     <>
@@ -37,17 +44,24 @@ const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
               <h1 className="text-gray-800 font-semibold text-xl capitalize text-center">
                 {medtoshow.title}
               </h1>
-              <div className="flex item-center justify-between mt-3">
-                <p className="text-gray-600 text-md text-center">
+              <div className="flex flex-col item-center mt-3">
+                <p className="text-gray-700 text-md text-center">
                   Category: {medtoshow.category}
                 </p>
               </div>
               <div className="flex justify-evenly pt-10">
                 <button
                   onClick={navigateToMedicationDetails}
-                  className="button bg-emerald-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg border-2"
+                  className="bg-teal-500 max-w-md inline-block px-2.5 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Details
+                </button>
+                <button
+                  onClick={handleDelete}
+                  type="submit"
+                  className="bg-teal-500 max-w-md inline-block px-2.5 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
+                >
+                  Delete
                 </button>
               </div>
             </div>
