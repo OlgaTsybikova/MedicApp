@@ -7,7 +7,7 @@ const RegisterPage = () => {
         <img
           src={registerImage}
           alt="register"
-          className="mt-8 space-y-6 h-68 w-96 md:object-scale-down"
+          className="mt-8 space-y-6 h-48 w-84 md:object-scale-down"
         />
         <RegisterForm />
       </div>

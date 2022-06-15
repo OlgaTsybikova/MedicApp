@@ -42,7 +42,7 @@ const LoginForm = (): JSX.Element => {
   return (
     <LoginFormStyled className="sm:px-6 lg:px-8">
       <form
-        className="mt-8 space-y-6 max-w-md"
+        className="mt-4 space-y-6 max-w-md"
         action="#"
         method="POST"
         autoComplete="off"
@@ -54,7 +54,7 @@ const LoginForm = (): JSX.Element => {
         <div className="relative group">
           <input
             name="username"
-            className="login-form w-full h-14 px-4 text-lg peer border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10"
+            className="login-form w-full h-12 px-4 text-lg peer border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10"
             type="text"
             id="username"
             placeholder=" "
@@ -72,7 +72,7 @@ const LoginForm = (): JSX.Element => {
         <div className="relative group">
           <input
             name="password"
-            className="login-form w-full h-14 px-4 text-lg peer bg-transparent border border-gray-300 placeholder-gray-500 text-gray-900focus:outline-none focus:ring-verde focus:z-10"
+            className="login-form w-full h-12 px-4 text-lg peer bg-transparent border border-gray-300 placeholder-gray-500 text-gray-900focus:outline-none focus:ring-verde focus:z-10"
             type="password"
             id="password"
             placeholder=" "
@@ -92,7 +92,7 @@ const LoginForm = (): JSX.Element => {
           <button
             onClick={handleSubmit}
             type="submit"
-            className="inline-block px-20 py-2.5 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            className="inline-block px-20 py-2 text-white font-medium leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
           >
             Log In
           </button>

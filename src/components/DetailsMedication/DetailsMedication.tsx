@@ -27,7 +27,7 @@ const DetailsMedication = ({ medtoshow }: MedicationProps) => {
             src={`${url}images/${medtoshow.image}`}
             onError={handleImageError}
             alt={medtoshow.title}
-            className="mt-8 space-y-6 h-68 w-96 md:object-scale-down"
+            className="mt-6 space-y-6 scale-75 rounded-lg md:object-scale-down"
           ></img>
         </div>
         <div className="text-center">

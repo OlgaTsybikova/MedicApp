@@ -29,7 +29,7 @@ const Medication = ({ medtoshow }: MedicationProps): JSX.Element => {
   };
   return (
     <>
-      <li className="container list-none" key={medtoshow.id}>
+      <li className="container list-none w-screen" key={medtoshow.id}>
         <div className="py-6 px-8">
           <div className="flex max-w-lg shadow-lg rounded-lg mx-auto bg-white border border-gray-300 overflow-hidden md:max-w-2xl">
             <div className="w-1/3 bg-cover">

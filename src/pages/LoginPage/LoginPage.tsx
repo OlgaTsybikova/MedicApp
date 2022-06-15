@@ -7,7 +7,7 @@ const LoginPage = () => {
         <img
           src={login}
           alt="login"
-          className="mt-8 space-y-6 h-68 w-96 md:object-scale-down"
+          className="mt-8 space-y-6 h-48 w-84 md:object-scale-down"
         />
         <LoginForm />
       </div>
