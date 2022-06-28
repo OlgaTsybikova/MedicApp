@@ -1,32 +1,32 @@
+import axios from "axios";
+import {
+  loadingOffActionCreator,
+  loadingOnActionCreator,
+  UiState,
+} from "../../features/uiSlice/uiSlice";
+import mockmeds from "../../mocks/mockmeds";
 import { medicationByIdThunk } from "./medicationByIdThunks";
 
-describe("Given a loadMedicationThunk function", () => {
-  describe("When it's called with a record id and authorized token", () => {
-    test("Then it should dispatch the loadMedicationActionCreator with the record info from the api", async () => {
+describe("Given a medicationByIdThunk function", () => {
+  describe("When it's called with a medication id and authorized token", () => {
+    test("Then it should call dispatch with loading On and Off ActionCreator", async () => {
+      const mockloadingOff: UiState = { loading: false };
+      const mockloadingOn: UiState = { loading: true };
       const dispatch = jest.fn();
-      const mockId = "1";
-      window.localStorage.setItem("token", "token");
 
-      const thunk = medicationByIdThunk(mockId);
+      axios.get = jest.fn().mockResolvedValueOnce({
+        data: mockmeds[0],
+      });
+
+      const expectedloadingOnAction = loadingOnActionCreator(mockloadingOn);
+      const expectedloadingOffAction = loadingOffActionCreator(mockloadingOff);
+
+      const thunk = await medicationByIdThunk(mockmeds[0].id);
 
       await thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalled();
-    });
-  });
-
-  describe("When it's called with a record id 4 not present in thye database", () => {
-    test("Then it should not dispatch the loadRecordActionCreator", async () => {
-      const dispatch = jest.fn();
-      const recordId = "4";
-
-      window.localStorage.setItem("token", "token");
-
-      const thunk = medicationByIdThunk(recordId);
-
-      await thunk(dispatch);
-
-      expect(dispatch).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
     });
   });
 });
