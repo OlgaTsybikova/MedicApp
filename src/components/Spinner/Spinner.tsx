@@ -9,7 +9,7 @@ const Spinner = ({ visible }: ISpinner): JSX.Element => {
 
   return (
     <SpinnerStyled className={modalSpinnerDisplay}>
-      <div className="container fixed flex py-5 justify-center items-center space-x-2 sm:px-6 lg:px-8">
+      <div className="container fixed flex pt-72 justify-center items-center space-x-2 sm:px-6 lg:px-8">
         <svg
           role="status"
           className="w-10 h-10 flex text-gray-200 animate-spin dark:text-gray-300 fill-teal-700"
